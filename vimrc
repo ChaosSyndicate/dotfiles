@@ -11,7 +11,6 @@ set noswapfile                  "no more backup files
 set wildmenu
 
 "airline settings
-let g:airline_powerline_fonts = 1
 let g:airline_theme = 'luna'
 
 set rtp+=~/.vim/bundle/vundle/
@@ -51,19 +50,19 @@ Bundle 'bling/vim-airline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic' 
-Bundle 'scrooloose/nerdtree'
 Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on
 
-let g:solarized_termtrans = 1
 set background=dark
-let g:solarized_visibility = "high"
+set t_Co=256
 let g:solarized_contrast = "high"
-let g:solarized_termcolors=256
+let g:solarized_visibility = "high"
+let g:solarized_termcolors = 256
 colorscheme solarized
 
-autocmd BufWritePost  ~/_vimrc source ~/_vimrc
+
+autocmd BufWritePost  ~/.vimrc source ~/.vimrc
 
 map K <Nop> "No more lookups 
 
@@ -82,10 +81,6 @@ nmap <silent> <c-e> :NERDTreeToggle<CR>
 
 "open vimrc
 nmap <leader>v :e $HOME/.vimrc<CR>
-
-"Nerdtreee
-let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
 "Syntastic
 let g:syntastic_mode_map = { 'mode': 'passive' }
