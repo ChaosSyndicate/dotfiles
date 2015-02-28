@@ -4,17 +4,21 @@ syntax enable
 
 set laststatus=2
 set encoding=utf-8
+set ttyfast
 set showcmd                     " display incomplete commands
 set nobackup
 set nowritebackup
 set noswapfile                  "no more backup files
+set autoread
 set wildmenu
 set hidden
+set history=1000
 
 "" General Config
 set number                  "shows line numbers
 let mapleader=" "
 set cursorline
+set autoindent
 set scrolloff=2
 set splitright
 set splitbelow
@@ -47,6 +51,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'Raimondi/delimitMate'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'boucherm/ShowMotion'
+Plug 'Valloric/YouCompleteMe'
+Plug 'mhinz/vim-startify'
+Plug 'mbbill/undotree'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -112,3 +120,17 @@ let g:ctrlp_max_depth = 5
 "YouCompleteMe
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
+"DelimitMate
+let delimitMate_expand_cr=1
+let delimitMate_expand_space=1
+let delimitMate_nesting_quotes=['"', ''']"']
+
+"Undo Tree
+let g:undotree_SetFocusWhenToggle=1
+nnoremap <silent> <F5> :UndotreeToggle<CR>
+
+"showmotion commands
+"
+hi SM_SmallMotionGroup cterm=italic ctermbg=53 gui=italic guibg=#5f005f
+hi SM_BigMotionGroup cterm=italic,bold ctermbg=54 gui=italic,bold guibg=#5f0087
+hi SM_CharSearchGroup cterm=italic,bold ctermbg=4 gui=italic,bold guibg=#3f6691
