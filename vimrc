@@ -10,7 +10,6 @@ set nobackup
 set nowritebackup
 set noswapfile                  "no more backup files
 set autoread
-set wildmenu
 set hidden
 set history=1000
 
@@ -24,14 +23,18 @@ set splitright
 set splitbelow
 set shiftround
 set showmatch
-set wildignore=.*
 set clipboard=unnamed
+
+"Autocomplete filenames
+set wildignore=*.o,*.hi,*.pyc,*.pdf
+set wildmenu
 
 "" Whitespace
 set nowrap                      " don't wrap lines
 set tabstop=4 shiftwidth=4      " a tab is two spaces (or set this to 4)
 set expandtab                   " use spaces, not tabs (optional)
 set backspace=indent,eol,start  " backspace through everything in insert mode
+set backspace=2                 "Backspace behaves like a IDE
 
 "" Searching
 set hlsearch                    " highlight matches
@@ -51,11 +54,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'Raimondi/delimitMate'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'boucherm/ShowMotion'
-Plug 'Valloric/YouCompleteMe'
 Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
-
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 filetype plugin indent on
@@ -69,8 +71,9 @@ let g:solarized_termcolors=256
 colorscheme solarized
 
 autocmd BufWritePost  ~/.vimrc source ~/.vimrc
-
-map K <Nop> "No more lookups 
+"Ctrl Backspace delete previous word
+inoremap <C-BS> <C-W>
+cnoremap <C-BS> <C-W>
 
 "Create a new line cmd mode without going to insert
 nmap <leader>k O<esc>k0
@@ -94,7 +97,9 @@ nnoremap <silent> <Leader><Right> :bnext<CR>
 nnoremap <silent> <Leader><Left> :bprev<CR>
 nnoremap <Leader>w :w<CR>
 
+"Airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'luna'
 
 "Nerdtreee
@@ -105,6 +110,8 @@ let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
 "Syntastic
 let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -114,14 +121,15 @@ let g:syntastic_check_on_wq = 0
 nnoremap <silent> t :CtrlP<cr>
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files = 600
+let g:ctrlp_max_files = 500
 let g:ctrlp_max_depth = 5
+set wildignore=*.o,*.hi,*.class,*.pyc
 
 "YouCompleteMe
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 "DelimitMate
-let delimitMate_expand_cr=1
+let delimitMate_expand_cr=2
 let delimitMate_expand_space=1
 let delimitMate_nesting_quotes=['"', ''']"']
 
