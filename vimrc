@@ -24,6 +24,8 @@ set splitbelow
 set shiftround
 set showmatch
 set clipboard=unnamed
+set shortmess=a     "Shorten some command mode mesages
+set showmatch
 
 "Autocomplete filenames
 set wildignore=*.o,*.hi,*.pyc,*.pdf
@@ -46,7 +48,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 "Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic' 
@@ -83,6 +85,11 @@ nmap <leader>j o<esc>j0
 inoremap jk <esc>
 inoremap kj <esc>
 
+"Jump to begging of line or end
+noremap H ^
+noremap L $
+vnoremap L g_
+
 "Move splits with vim movement
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -96,7 +103,9 @@ nmap <leader>v :e $HOME/.vimrc<CR>
 nnoremap <silent> <Leader><Right> :bnext<CR>
 nnoremap <silent> <Leader><Left> :bprev<CR>
 nnoremap <Leader>w :w<CR>
+noremap <leader>p :silent! set paste<CR>"*p:set nopaste<CR>
 
+"
 "Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
