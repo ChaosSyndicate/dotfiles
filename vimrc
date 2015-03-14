@@ -49,6 +49,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'
+Plug 'noahfrederick/vim-hemisu'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic' 
@@ -104,8 +105,8 @@ nnoremap <silent> <Leader><Right> :bnext<CR>
 nnoremap <silent> <Leader><Left> :bprev<CR>
 nnoremap <Leader>w :w<CR>
 noremap <leader>p :silent! set paste<CR>"*p:set nopaste<CR>
+nmap <silent> <leader>h :nohls<CR>
 
-"
 "Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
