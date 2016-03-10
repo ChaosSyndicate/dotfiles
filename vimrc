@@ -12,6 +12,8 @@ set noswapfile                  "no more backup files
 set autoread
 set hidden
 set history=1000
+set lazyredraw
+set scrolloff=30
 
 "" General Config
 set number                  "shows line numbers
@@ -49,18 +51,27 @@ nnoremap <leader><space> :nohlsearch<CR>
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'
-Plug 'noahfrederick/vim-hemisu'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'sheerun/vim-polyglot'  
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/seoul256.vim'
+Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
-Plug 'kien/ctrlp.vim'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/a.vim'
 Plug 'scrooloose/syntastic' 
 Plug 'scrooloose/nerdtree'
-Plug 'Raimondi/delimitMate'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'boucherm/ShowMotion'
-Plug 'mhinz/vim-startify'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Valloric/YouCompleteMe'
 Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
+Plug 'nanotech/jellybeans.vim'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 filetype plugin indent on
@@ -71,9 +82,23 @@ set background=dark
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme gruvbox
 
 autocmd BufWritePost  ~/.vimrc source ~/.vimrc
+
+"reformat the file
+nnoremap g= gg=G``
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+"Remap to : to ;
+noremap ; :
+
+" Quick way to save file
+nnoremap <leader>w :w<CR>
+
 "Ctrl Backspace delete previous word
 inoremap <C-BS> <C-W>
 cnoremap <C-BS> <C-W>
@@ -107,6 +132,9 @@ nnoremap <Leader>w :w<CR>
 noremap <leader>p :silent! set paste<CR>"*p:set nopaste<CR>
 nmap <silent> <leader>h :nohls<CR>
 
+"Auto Pairs
+let g:AutoPairsMultilineClose = 0
+
 "Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -127,28 +155,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" CtrlP
-nnoremap <silent> t :CtrlP<cr>
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files = 500
-let g:ctrlp_max_depth = 5
-set wildignore=*.o,*.hi,*.class,*.pyc
-
 "YouCompleteMe
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-
-"DelimitMate
-let delimitMate_expand_cr=2
-let delimitMate_expand_space=1
-let delimitMate_nesting_quotes=['"', ''']"']
+let g:ycm_autoclose_preview_window_after_completion = 0
+nmap <silent> <leader>jd :YcmCompleter GoTo<CR>
 
 "Undo Tree
 let g:undotree_SetFocusWhenToggle=1
 nnoremap <silent> <F5> :UndotreeToggle<CR>
-
-"showmotion commands
-"
-hi SM_SmallMotionGroup cterm=italic ctermbg=53 gui=italic guibg=#5f005f
-hi SM_BigMotionGroup cterm=italic,bold ctermbg=54 gui=italic,bold guibg=#5f0087
-hi SM_CharSearchGroup cterm=italic,bold ctermbg=4 gui=italic,bold guibg=#3f6691
