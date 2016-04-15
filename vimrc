@@ -65,7 +65,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/YouCompleteMe'
 Plug 'mbbill/undotree'
-Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
 Plug 'nanotech/jellybeans.vim'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
@@ -156,10 +155,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 "YouCompleteMe
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/.ycm_extra_conf.py"
 let g:ycm_autoclose_preview_window_after_completion = 0
 nmap <silent> <leader>jd :YcmCompleter GoTo<CR>
 
 "Undo Tree
 let g:undotree_SetFocusWhenToggle=1
 nnoremap <silent> <F5> :UndotreeToggle<CR>
+
+"JavaComplete2
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
